@@ -1,13 +1,13 @@
 /*
- * Æ®·£Á§¼Ç(Transaction)
- * - ÇÏ³ªÀÇ ÀÛ¾÷ÀÇ ´ÜÀ§
- * - µ¥ÀÌÅÍº£ÀÌ½ºÀÇ »óÅÂ¸¦ º¯È¯½ÃÅ°´Â ÇÏ³ªÀÇ ³í¸®Àû ±â´ÉÀ» ¼öÇàÇÏ±â À§ÇÑ ÀÛ¾÷ÀÇ ´ÜÀ§
- * - rollback(º¹¿ø), commit(¿Ï·á)
+ * íŠ¸ëžœì ì…˜(Transaction)
+ * - í•˜ë‚˜ì˜ ìž‘ì—…ì˜ ë‹¨ìœ„
+ * - ë°ì´í„°ë² ì´ìŠ¤ì˜ ìƒíƒœë¥¼ ë³€í™˜ì‹œí‚¤ëŠ” í•˜ë‚˜ì˜ ë…¼ë¦¬ì  ê¸°ëŠ¥ì„ ìˆ˜í–‰í•˜ê¸° ìœ„í•œ ìž‘ì—…ì˜ ë‹¨ìœ„
+ * - rollback(ë³µì›), commit(ì™„ë£Œ)
  * - savepoint
- * - ¿¹) savepoint sp1; -> rollback to sp1;
+ * - ì˜ˆ) savepoint sp1; -> rollback to sp1;
  * 
- * »ç¿ë ÀÌÀ¯
- * - »ç¿ëÀÚ, ¿À¶óÅ¬¼­¹ö, ¾ÖÇÃ¸®ÄÉÀÌ¼Ç °³¹ßÀÚ, DBAµî¿¡°Ô µ¥ÀÌÅÍ ÀÏÄ¡¼º°ú µ¥ÀÌÅÍ µ¿½Ã¹ß»ýÀ» º¸Àå
+ * ì‚¬ìš© ì´ìœ 
+ * - ì‚¬ìš©ìž, ì˜¤ë¼í´ì„œë²„, ì• í”Œë¦¬ì¼€ì´ì…˜ ê°œë°œìž, DBAë“±ì—ê²Œ ë°ì´í„° ì¼ì¹˜ì„±ê³¼ ë°ì´í„° ë™ì‹œë°œìƒì„ ë³´ìž¥
  */
 CREATE TABLE bonuses (
 	employee_id number(6),
@@ -20,7 +20,7 @@ SELECT * FROM bonuses;
 
 DELETE FROM bonuses;
 
--- ÇÑ¹ø¿¡ Àü »ç¿øÀ» ±âÁØÀ¸·Î ±Þ¿©ÀÇ 10%¸¦ º¸³Ê½º·Î Áö±Þ
+-- í•œë²ˆì— ì „ ì‚¬ì›ì„ ê¸°ì¤€ìœ¼ë¡œ ê¸‰ì—¬ì˜ 10%ë¥¼ ë³´ë„ˆìŠ¤ë¡œ ì§€ê¸‰
 SELECT * FROM EMPLOYEES e ;
 
 INSERT INTO bonuses
@@ -32,17 +32,17 @@ SELECT * FROM bonuses;
 ROLLBACK;
 COMMIT;
 
--- rownum : Á¶È¸µÈ ¼ø¼­´ë·Î ¼ø¹øÀ» Àû¿ë
+-- rownum : ì¡°íšŒëœ ìˆœì„œëŒ€ë¡œ ìˆœë²ˆì„ ì ìš©
 SELECT rownum, employee_id, bonus FROM bonuses;
 DELETE FROM bonuses WHERE rownum = 1;
 ROLLBACK;
 
 /*
- * ºä(view)
- * - ÇÏ³ª ÀÌ»óÀÇ Å×ÀÌºíÀÌ³ª ´Ù¸¥ ºäÀÇ µ¥ÀÌÅÍ¸¦ º¼ ¼ö ÀÖ°Ô ÇÏ´Â µ¥ÀÌÅÍº£ÀÌ½º °´Ã¼
- * - ½ÇÁ¦ µ¥ÀÌÅÍ´Â ºä¸¦ ±¸¼ºÇÏ´Â Å×ÀÌºí¿¡ ´ã°Ü ÀÕÁö¸¸ ¸¶Ä¡ Å×ÀÌºíÃ³·³ »ç¿ëÇÒ ¼ö ÀÖÀ½
+ * ë·°(view)
+ * - í•˜ë‚˜ ì´ìƒì˜ í…Œì´ë¸”ì´ë‚˜ ë‹¤ë¥¸ ë·°ì˜ ë°ì´í„°ë¥¼ ë³¼ ìˆ˜ ìžˆê²Œ í•˜ëŠ” ë°ì´í„°ë² ì´ìŠ¤ ê°ì²´
+ * - ì‹¤ì œ ë°ì´í„°ëŠ” ë·°ë¥¼ êµ¬ì„±í•˜ëŠ” í…Œì´ë¸”ì— ë‹´ê²¨ ìž‡ì§€ë§Œ ë§ˆì¹˜ í…Œì´ë¸”ì²˜ëŸ¼ ì‚¬ìš©í•  ìˆ˜ ìžˆìŒ
  */
--- »ç¿øÁß¿¡¼­ ÀÔ»çÀÏÀÌ ºü¸¥ »ç¶÷ 10¸í Ãâ·Â
+-- ì‚¬ì›ì¤‘ì—ì„œ ìž…ì‚¬ì¼ì´ ë¹ ë¥¸ ì‚¬ëžŒ 10ëª… ì¶œë ¥
 SELECT employee_id, first_name, last_name, hire_date FROM employees ORDER BY hire_date;
 
 SELECT rownum, employee_id, first_name, last_name FROM employees;
@@ -68,7 +68,7 @@ CREATE TABLE tb_test01(
 	CONSTRAINT pk_test01 PRIMARY key(key_01, key_02)
 );
 
--- disable novalidate : constraint ¾ø´Â °Í°ú µ¿ÀÏ -> µ¥ÀÌÅÍ¸¦ °Å¸£Áö ¾Ê°í ³Ö¾îÁÜ
+-- disable novalidate : constraint ì—†ëŠ” ê²ƒê³¼ ë™ì¼ -> ë°ì´í„°ë¥¼ ê±°ë¥´ì§€ ì•Šê³  ë„£ì–´ì¤Œ
 CREATE OR REPLACE VIEW vw_test01(
 	key_01,
 	key_02,
@@ -81,53 +81,53 @@ SELECT * FROM tb_test01;
 SELECT * FROM vw_test01;
 
 INSERT INTO vw_test01(key_01, key_02, col_01)
-values('apple','±è»ç°ú','1111');
+values('apple','ê¹€ì‚¬ê³¼','1111');
 
 
--- ¹®Á¦1 employees Å×ÀÌºí¿¡¼­ 20¹ø ºÎ¼­(department_id)ÀÇ ¼¼ºÎ »çÇ×À» Æ÷ÇÔÇÏ´Â
--- emp_20 view¸¦ »ý¼º
+-- ë¬¸ì œ1 employees í…Œì´ë¸”ì—ì„œ 20ë²ˆ ë¶€ì„œ(department_id)ì˜ ì„¸ë¶€ ì‚¬í•­ì„ í¬í•¨í•˜ëŠ”
+-- emp_20 viewë¥¼ ìƒì„±
 CREATE OR REPLACE VIEW emp_20
 AS SELECT * FROM employees WHERE DEPARTMENT_ID = 20;
 
 SELECT * FROM emp_20;
 
--- ¹®Á¦2 employees Å×ÀÌºí¿¡¼­ 30¹ø ºÎ¼­¸¸ employee_id¸¦ emp_no·Î
--- last_nameÀ» nameÀ¸·Î salary¸¦ sal·Î ¹Ù²Ù¾î emp_30 view¸¦ »ý¼º
+-- ë¬¸ì œ2 employees í…Œì´ë¸”ì—ì„œ 30ë²ˆ ë¶€ì„œë§Œ employee_idë¥¼ emp_noë¡œ
+-- last_nameì„ nameìœ¼ë¡œ salaryë¥¼ salë¡œ ë°”ê¾¸ì–´ emp_30 viewë¥¼ ìƒì„±
 CREATE OR REPLACE VIEW emp_30("emp_no", "name", "sal")
 AS SELECT employee_id, last_name, salary FROM employees WHERE DEPARTMENT_ID = 30;
 
 SELECT * FROM emp_30;
 
--- ¹®Á¦3 ºÎ¼­º°·Î ºÎ¼­¸í, ÃÖ¼Ò±Þ¿©, ÃÖ´ë±Þ¿©, ºÎ¼­ÀÇ Æò±Õ±Þ¿©¸¦ Æ÷ÇÔÇÏ´Â dept_sum view¸¦ »ý¼º
--- ÇÊµå¸í : ºÎ¼­¸í, ÃÖ¼Ò±Þ¿©, ÃÖ´ë±Þ¿©, Æò±Õ±Þ¿©
+-- ë¬¸ì œ3 ë¶€ì„œë³„ë¡œ ë¶€ì„œëª…, ìµœì†Œê¸‰ì—¬, ìµœëŒ€ê¸‰ì—¬, ë¶€ì„œì˜ í‰ê· ê¸‰ì—¬ë¥¼ í¬í•¨í•˜ëŠ” dept_sum viewë¥¼ ìƒì„±
+-- í•„ë“œëª… : ë¶€ì„œëª…, ìµœì†Œê¸‰ì—¬, ìµœëŒ€ê¸‰ì—¬, í‰ê· ê¸‰ì—¬
 SELECT * FROM EMPLOYEES e ;
 SELECT * FROM dept_sum;
 
-CREATE OR REPLACE VIEW dept_sum("ºÎ¼­¸í","ÃÖ¼Ò±Þ¿©","ÃÖ´ë±Þ¿©","Æò±Õ±Þ¿©")
+CREATE OR REPLACE VIEW dept_sum("ë¶€ì„œëª…","ìµœì†Œê¸‰ì—¬","ìµœëŒ€ê¸‰ì—¬","í‰ê· ê¸‰ì—¬")
 AS SELECT department_name, min(salary), max(salary),trunc(avg(salary),0)
 FROM employees e, departments d WHERE e.DEPARTMENT_ID = d.DEPARTMENT_ID
 GROUP BY department_name;
 
 /*
- * ½ÃÄö½º(sequence)
- * - ÀÚµ¿À¸·Î ¼øÂ÷ÀûÀ¸·Î Áõ°¡ÇÏ´Â ¼ø¹øÀ» ¹ÝÈ¯ÇÏ´Â µ¥ÀÌÅÍº£ÀÌ½º °´Ã¼
- * - Áßº¹°ªÀ» ¹æÁöÇÏ°Å³ª PK°ªÀ» ¼³Á¤
- * create sequence ½ÃÄö½º¸í ¿É¼Ç...
- * increment by [Áõ°¨¼ýÀÚ] : Áõ°¨¼ýÀÚ°¡ ¾ç¼ö¸é Áõ°¡, À½¼ö¸é °¨¼Ò. default´Â 1
- * start with [½ÃÀÛ¼ýÀÚ] : ½ÃÀÛ¼ýÀÚÀÇ µðÆúÆ®°ªÀº Áõ°¡ÀÏ ¶§ minvalue, °¨¼ÒÀÏ ¶§ maxvalue
- * minvalue [ÃÖ¼Ò°ª]
- * maxvalue [ÃÖ´ë°ª]
- * cycle or nocycle : cycle ¼³Á¤½Ã ÃÖ´ë°ª¿¡ µµ´ÞÇÏ¸é ÃÖ¼Ò°ªºÎÅÍ ´Ù½Ã ½ÃÀÛ
+ * ì‹œí€€ìŠ¤(sequence)
+ * - ìžë™ìœ¼ë¡œ ìˆœì°¨ì ìœ¼ë¡œ ì¦ê°€í•˜ëŠ” ìˆœë²ˆì„ ë°˜í™˜í•˜ëŠ” ë°ì´í„°ë² ì´ìŠ¤ ê°ì²´
+ * - ì¤‘ë³µê°’ì„ ë°©ì§€í•˜ê±°ë‚˜ PKê°’ì„ ì„¤ì •
+ * create sequence ì‹œí€€ìŠ¤ëª… ì˜µì…˜...
+ * increment by [ì¦ê°ìˆ«ìž] : ì¦ê°ìˆ«ìžê°€ ì–‘ìˆ˜ë©´ ì¦ê°€, ìŒìˆ˜ë©´ ê°ì†Œ. defaultëŠ” 1
+ * start with [ì‹œìž‘ìˆ«ìž] : ì‹œìž‘ìˆ«ìžì˜ ë””í´íŠ¸ê°’ì€ ì¦ê°€ì¼ ë•Œ minvalue, ê°ì†Œì¼ ë•Œ maxvalue
+ * minvalue [ìµœì†Œê°’]
+ * maxvalue [ìµœëŒ€ê°’]
+ * cycle or nocycle : cycle ì„¤ì •ì‹œ ìµœëŒ€ê°’ì— ë„ë‹¬í•˜ë©´ ìµœì†Œê°’ë¶€í„° ë‹¤ì‹œ ì‹œìž‘
  */
 CREATE SEQUENCE test_seq
 INCREMENT BY 1
 START WITH 10
 MAXVALUE 1000;
 
-SELECT test_seq.currval FROM dual; -- ¿¡·¯
-SELECT test_seq.nextval FROM dual; -- nextval·Î ¸ÕÀú ÃÊ±âÈ­ÇØ¾ß »ç¿ë°¡´É
-SELECT test_seq.currval FROM dual; -- ÇöÀç °ª
-SELECT test_seq.nextval FROM dual; -- 11·Î Áõ°¡µÇ¾î ÀÖÀ½
+SELECT test_seq.currval FROM dual; -- ì—ëŸ¬
+SELECT test_seq.nextval FROM dual; -- nextvalë¡œ ë¨¼ì € ì´ˆê¸°í™”í•´ì•¼ ì‚¬ìš©ê°€ëŠ¥
+SELECT test_seq.currval FROM dual; -- í˜„ìž¬ ê°’
+SELECT test_seq.nextval FROM dual; -- 11ë¡œ ì¦ê°€ë˜ì–´ ìžˆìŒ
 
 CREATE TABLE tb_ex(
 	idx number(10) NOT NULL,
@@ -142,7 +142,7 @@ INSERT INTO tb_ex(idx, userid) values(test_seq.nextval, null);
 INSERT INTO tb_ex(idx, userid) values(test_seq.nextval, 'null');
 
 /*
- * alter sequence [½ÃÄö½º¸í] ¿É¼Ç..
+ * alter sequence [ì‹œí€€ìŠ¤ëª…] ì˜µì…˜..
  */
 ALTER SEQUENCE test_seq
 INCREMENT BY 2
@@ -155,18 +155,18 @@ INSERT INTO tb_ex(idx, userid) values(test_seq.nextval, 'orange');
 DROP SEQUENCE test_seq;
 
 /*
- * index(»öÀÎ)
- * - index´Â ¿øÇÏ´Â Á¤º¸ÀÇ À§Ä¡¸¦ ºü¸£°í Á¤È®ÇÏ°Ô ¾Ë¾Æ³¾ ¼ö ÀÖ´Â ¹æ¹ý
- * - ÀÚµ¿»ý¼º : primary key
- * - ¼öµ¿»ý¼º : Query·Î ¸¸µé¾î¼­ »ç¿ë
+ * index(ìƒ‰ì¸)
+ * - indexëŠ” ì›í•˜ëŠ” ì •ë³´ì˜ ìœ„ì¹˜ë¥¼ ë¹ ë¥´ê³  ì •í™•í•˜ê²Œ ì•Œì•„ë‚¼ ìˆ˜ ìžˆëŠ” ë°©ë²•
+ * - ìžë™ìƒì„± : primary key
+ * - ìˆ˜ë™ìƒì„± : Queryë¡œ ë§Œë“¤ì–´ì„œ ì‚¬ìš©
  * 
- * »ý¼ºÇÏ¸é ÁÁÀº °æ¿ì
- * - WHEREÀýÀÌ³ª JOINÁ¶°Ç ¾È¿¡ ÀÚÁÖ »ç¿ëµÇ´Â ÄÃ·³
- * - null°ªÀÌ ¸¹ÀÌ Æ÷ÇÔµÇ¾î ÀÖ´Â ÄÃ·³
+ * ìƒì„±í•˜ë©´ ì¢‹ì€ ê²½ìš°
+ * - WHEREì ˆì´ë‚˜ JOINì¡°ê±´ ì•ˆì— ìžì£¼ ì‚¬ìš©ë˜ëŠ” ì»¬ëŸ¼
+ * - nullê°’ì´ ë§Žì´ í¬í•¨ë˜ì–´ ìžˆëŠ” ì»¬ëŸ¼
  * 
- * »ý¼ºÇÏ¸é ¾ÈÁÁÀº °æ¿ì
- * - Å×ÀÌºíÀÌ ÀÛÀ» ¶§(row°¡ 10000°³ ÀÌÇÏ)
- * - Å×ÀÌºíÀÌ ÀÚÁÖ °»½ÅµÉ ¶§
+ * ìƒì„±í•˜ë©´ ì•ˆì¢‹ì€ ê²½ìš°
+ * - í…Œì´ë¸”ì´ ìž‘ì„ ë•Œ(rowê°€ 10000ê°œ ì´í•˜)
+ * - í…Œì´ë¸”ì´ ìžì£¼ ê°±ì‹ ë  ë•Œ
 */
 CREATE TABLE emp_copy
 AS SELECT * FROM employees;
