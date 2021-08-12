@@ -1,4 +1,4 @@
--- Å×ÀÌºí ¸¸µé±â
+-- Ã…Ã—Ã€ÃŒÂºÃ­ Â¸Â¸ÂµÃ©Â±Ã¢
 CREATE TABLE test(
 	idx number(4) NOT NULL,
 	name varchar(10) NOT NULL,
