@@ -1,0 +1,68 @@
+DBMS (DataBase Management System)
+
+Data (자료)
+- 수, 영상, 단어 의미 단위
+- 재료를 말하며 의미있게 정리하면 일반적인 값들
+
+Information (정보)
+- 의사결정을 위해 의미와 목적에 맞게 가공된 자료
+
+DataBase
+- 여러 사람이 공유하고 사용할 목적으로 통합적인 정보의 집합
+- 데이터가 논리적으로 모인 집합
+
+DBMS
+- DataBase를 저장하고 관리하는 소프트웨어
+
+DBMS 랭킹
+https://db-engines.com/en/ranking
+
+RDBMS (관계형 데이터베이스)
+- Relational : 상관적인
+- DataBase : 데이터 기반 저장소
+- Management : 관리
+- System : 프로그램
+	* 관계적인 데이터베이스를 관리하는 프로그램
+
+관계형 데이터베이스의 특징
+- 키와 값들의 간단한 관계를 테이블화 시킨 데이터베이스
+- 표준 언어인 SQL을 사용
+
+오라클 : https://www.oracle.com/index.html
+11g 다운로드
+https://www.oracle.com/database/technologies/xe-prior-releases.html
+- Oracle Database 11gR2 Express Edition for Windows x64 선택
+
+SQL (Structured Query Language)
+- 관계형 데이터베이스 시스템에서 자료를 관리 및 처리하기 위해 설계된 언어
+
+SQL 문법의 종류
+- DDL(Data Definition Language, 데이터 정의언어)
+릴레이션을 정의하기 위해 사용하는 언어(CREATE, ALTER, DROP...)
+- DML(Data Manipulation Language, 데이터 조작언어)
+데이터를 추가/수정/삭제 데이터 관리르 위한 언어(SELECT, INSERT, UPDATE...)
+- DCL(Data Control Language, 데이터 제어언어)
+사용자 관리 및 사용자별로 릴레이션 또는 데이터를 관리하고 접근하는 권한을 다루기 위한 언어(GRANT, REVOKE...)
+
+검색 -> cmd(관리자 권한으로 실행)
+sqlplus 실행
+
+sys로 접속
+sys as sysdba
+0328
+
+* sys, system 차이
+sys : 오라클 DB의 관리자, 슈퍼 유저. DB생성 및 삭제가 가능
+system : sys와 동일하지만 DB를 생성할 권한이 없음
+
+일반계정 만들기
+CREATE USER 게정명 IDENTIFIED BY 비밀번호;
+CREATE USER scott IDENTIFIED BY tiger;
+
+권한 주기 (대소문자 구별 없음)
+RESOURCE : 자원
+CONNECT : 접속
+GRANT RESOURCE, CONNECT TO scott;
+
+디비버
+https://dbeaver.io/
