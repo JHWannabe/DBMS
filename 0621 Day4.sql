@@ -11,11 +11,11 @@ CREATE TABLE tb_member(
 	mem_address3 varchar2(50),
 	mem_regdate DATE DEFAULT sysdate,
 	CONSTRAINT pk_userid PRIMARY KEY(mem_userid),
-	CONSTRAINT ck_gender check(mem_gender IN ('³²ÀÚ', '¿©ÀÚ'))
+	CONSTRAINT ck_gender check(mem_gender IN ('ë‚¨ìž', 'ì—¬ìž'))
 );
--- ¿©·¯ ÇÊµå¿¡ primary key¸¦ Àû¿ë
+-- ì—¬ëŸ¬ í•„ë“œì— primary keyë¥¼ ì ìš©
 -- CONSTRAINT pk_userid PRIMARY KEY(mem_userid, mem_hp)
--- 1°³ÀÇ Å×ÀÌºí¿¡ primary key´Â ÇÏ³ªÀÇ ÀÌ¸§¿¡¸¸ ¿©·¯°³ ÇÊµå¸¦ Àû¿ë
+-- 1ê°œì˜ í…Œì´ë¸”ì— primary keyëŠ” í•˜ë‚˜ì˜ ì´ë¦„ì—ë§Œ ì—¬ëŸ¬ê°œ í•„ë“œë¥¼ ì ìš©
 
 DROP TABLE tb_member;
 SELECT * FROM tb_member;
@@ -23,51 +23,51 @@ SELECT * FROM tb_member;
 ALTER TABLE tb_member ADD PRIMARY KEY (mem_hp); --table can have only one primary KEY
 
 INSERT INTO tb_member (mem_userid, mem_userpw, mem_name, mem_gender, mem_email, mem_hp, mem_zipcode, 
-mem_address1, mem_address2, mem_address3) VALUES ('apple', '1111', '±è»ç°ú', '¿©ÀÚ', 'apple@apple.com', 
-'010-1111-1111', '11111', '¼­¿ï', '¼­ÃÊ±¸', '¾çÀçµ¿');
+mem_address1, mem_address2, mem_address3) VALUES ('apple', '1111', 'ê¹€ì‚¬ê³¼', 'ì—¬ìž', 'apple@apple.com', 
+'010-1111-1111', '11111', 'ì„œìš¸', 'ì„œì´ˆêµ¬', 'ì–‘ìž¬ë™');
 INSERT INTO tb_member (mem_userid, mem_userpw, mem_name, mem_gender, mem_email, mem_hp, mem_zipcode, 
-mem_address1, mem_address2, mem_address3) VALUES ('banana', '2222', '¹ÝÇÏ³ª', '¿©ÀÚ', 'banana@banana.com', 
-'010-2222-2222', '11111', '¼­¿ï', '¼­ÃÊ±¸', '¼­ÃÊµ¿');
+mem_address1, mem_address2, mem_address3) VALUES ('banana', '2222', 'ë°˜í•˜ë‚˜', 'ì—¬ìž', 'banana@banana.com', 
+'010-2222-2222', '11111', 'ì„œìš¸', 'ì„œì´ˆêµ¬', 'ì„œì´ˆë™');
 INSERT INTO tb_member (mem_userid, mem_userpw, mem_name, mem_gender, mem_email, mem_hp, mem_zipcode, 
-mem_address1, mem_address2, mem_address3) VALUES ('orange', '3333', '¿À·»Áö', '³²ÀÚ', 'orange@orange.com', 
-'010-3333-3333', '11111', '¼­¿ï', '°­³²±¸', '¿ª»ïµ¿');
+mem_address1, mem_address2, mem_address3) VALUES ('orange', '3333', 'ì˜¤ë Œì§€', 'ë‚¨ìž', 'orange@orange.com', 
+'010-3333-3333', '11111', 'ì„œìš¸', 'ê°•ë‚¨êµ¬', 'ì—­ì‚¼ë™');
 INSERT INTO tb_member (mem_userid, mem_userpw, mem_name, mem_gender, mem_email, mem_hp, mem_zipcode, 
-mem_address1, mem_address2, mem_address3) VALUES ('melon', '4444', 'ÀÌ¸Þ·Ð', '³²ÀÚ', 'melon@melon.com', 
-'010-4444-4444', '11111', '¼­¿ï', '°­³²±¸', '»ï¼ºµ¿');
+mem_address1, mem_address2, mem_address3) VALUES ('melon', '4444', 'ì´ë©”ë¡ ', 'ë‚¨ìž', 'melon@melon.com', 
+'010-4444-4444', '11111', 'ì„œìš¸', 'ê°•ë‚¨êµ¬', 'ì‚¼ì„±ë™');
 INSERT INTO tb_member (mem_userid, mem_userpw, mem_name, mem_gender, mem_email, mem_hp, mem_zipcode, 
-mem_address1, mem_address2, mem_address3) VALUES ('cherry', '5555', 'Ã¤¸®', '¿©ÀÚ', 'cherry@cherry.com', 
-'010-5555-5555', '11111', '¼­¿ï', 'µ¿ÀÛ±¸', '»ç´çµ¿');
+mem_address1, mem_address2, mem_address3) VALUES ('cherry', '5555', 'ì±„ë¦¬', 'ì—¬ìž', 'cherry@cherry.com', 
+'010-5555-5555', '11111', 'ì„œìš¸', 'ë™ìž‘êµ¬', 'ì‚¬ë‹¹ë™');
 INSERT INTO tb_member (mem_userid, mem_userpw, mem_name, mem_gender, mem_email, mem_hp, mem_zipcode, 
-mem_address1, mem_address2, mem_address3) VALUES ('avocado', '6666', '¾È°¡µµ', '³²ÀÚ', 'avocado@avocado.com', 
-'010-6666-6666', '11111', '¼­¿ï', '°­³²±¸', '°³Æ÷µ¿');
+mem_address1, mem_address2, mem_address3) VALUES ('avocado', '6666', 'ì•ˆê°€ë„', 'ë‚¨ìž', 'avocado@avocado.com', 
+'010-6666-6666', '11111', 'ì„œìš¸', 'ê°•ë‚¨êµ¬', 'ê°œí¬ë™');
 INSERT INTO tb_member (mem_userid, mem_userpw, mem_name, mem_gender, mem_email, mem_hp, mem_zipcode, 
-mem_address1, mem_address2, mem_address3) VALUES ('berry', '7777', '¹è¾Ö¸®', '¿©ÀÚ', 'berry@berry.com', 
-'010-7777-7777', '11111', '¼­¿ï', '°­³²±¸', '´ëÄ¡µ¿');
+mem_address1, mem_address2, mem_address3) VALUES ('berry', '7777', 'ë°°ì• ë¦¬', 'ì—¬ìž', 'berry@berry.com', 
+'010-7777-7777', '11111', 'ì„œìš¸', 'ê°•ë‚¨êµ¬', 'ëŒ€ì¹˜ë™');
 
 
 SELECT mem_userid, mem_name, mem_gender FROM tb_member;
 SELECT mem_userid, 'mem_weight' FROM tb_member;
--- ÇÊµå¸¦ º°ÄªÀ¸·Î ¹Ù²Ù±â (ÀÏ½ÃÀû)
-SELECT mem_userid AS "¾ÆÀÌµð", mem_userpw AS "ºñ¹Ð¹øÈ£" FROM tb_member;
+-- í•„ë“œë¥¼ ë³„ì¹­ìœ¼ë¡œ ë°”ê¾¸ê¸° (ì¼ì‹œì )
+SELECT mem_userid AS "ì•„ì´ë””", mem_userpw AS "ë¹„ë°€ë²ˆí˜¸" FROM tb_member;
 
--- order by (Á¤·Ä)
--- asc : ¿À¸§Â÷¼ø, desc : ³»¸²Â÷¼ø
--- ¿À¸§Â÷¼ø ±âÁØÀ¸·Î => ÇÑ±Û : °¡³ª´Ù¶ó.., ¿µ¾î : ABCD.., ¼ýÀÚ : 1234.., ³¯Â¥ : ¿¹Àü³¯Â¥..,
+-- order by (ì •ë ¬)
+-- asc : ì˜¤ë¦„ì°¨ìˆœ, desc : ë‚´ë¦¼ì°¨ìˆœ
+-- ì˜¤ë¦„ì°¨ìˆœ ê¸°ì¤€ìœ¼ë¡œ => í•œê¸€ : ê°€ë‚˜ë‹¤ë¼.., ì˜ì–´ : ABCD.., ìˆ«ìž : 1234.., ë‚ ì§œ : ì˜ˆì „ë‚ ì§œ..,
 SELECT mem_userid, mem_name, mem_regdate FROM tb_member ORDER BY mem_regdate ASC;
 SELECT mem_userid, mem_name, mem_regdate FROM tb_member ORDER BY mem_regdate DESC;
 
--- °¡Àå ÃÖ±Ù¿¡ °¡ÀÔÇÑ ¼øÀ¸·Î ¼ºº°ÀÌ ¿©ÀÚ¸¸ Ãâ·Â
-SELECT * FROM tb_member WHERE mem_gender = '¿©ÀÚ' ORDER BY mem_regdate DESC;
+-- ê°€ìž¥ ìµœê·¼ì— ê°€ìž…í•œ ìˆœìœ¼ë¡œ ì„±ë³„ì´ ì—¬ìžë§Œ ì¶œë ¥
+SELECT * FROM tb_member WHERE mem_gender = 'ì—¬ìž' ORDER BY mem_regdate DESC;
 
 SELECT * FROM tb_member ORDER BY mem_gender DESC;
--- ¼ºº°·Î ³»¸²Â÷¼ø Á¤·Ä ÈÄ °°Àº µî¼öÀÏ °æ¿ì °¡ÀÔ¼øÀ¸·Î Ãâ·Â
+-- ì„±ë³„ë¡œ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬ í›„ ê°™ì€ ë“±ìˆ˜ì¼ ê²½ìš° ê°€ìž…ìˆœìœ¼ë¡œ ì¶œë ¥
 SELECT mem_userid, mem_name, mem_gender, mem_regdate FROM tb_member ORDER BY mem_gender DESC, mem_regdate ASC;
 
--- Áßº¹°ª ¾ø¾Ö±â(distinct)
+-- ì¤‘ë³µê°’ ì—†ì• ê¸°(distinct)
 SELECT DISTINCT mem_gender FROM tb_member;
 
 
--- ÁÖ¹® Å×ÀÌºí »ý¼º
+-- ì£¼ë¬¸ í…Œì´ë¸” ìƒì„±
 CREATE TABLE tb_order (
 	ord_no varchar2(10),
 	ord_userid varchar2(20),
@@ -82,37 +82,37 @@ SELECT * FROM tb_order;
 DROP TABLE tb_order;
 
 INSERT INTO tb_order (ord_no, ord_userid, ord_product, ord_count)
-VALUES ('0000000001','jhjun', '¸ÆÇÁ·Î',1); --integrity constraint (SYS.FK_USERID) violated - parent key not FOUND
+VALUES ('0000000001','jhjun', 'ë§¥í”„ë¡œ',1); --integrity constraint (SYS.FK_USERID) violated - parent key not FOUND
 INSERT INTO tb_order (ord_no, ord_userid, ord_product, ord_count)
-VALUES ('0000000001','apple', '¸ÆÇÁ·Î',1);
+VALUES ('0000000001','apple', 'ë§¥í”„ë¡œ',1);
 INSERT INTO tb_order (ord_no, ord_userid, ord_product, ord_count)
-VALUES ('0000000002','orange', 'Ã»¼Ò±â',1);
+VALUES ('0000000002','orange', 'ì²­ì†Œê¸°',1);
 INSERT INTO tb_order (ord_no, ord_userid, ord_product, ord_count)
-VALUES ('0000000003','melon', '¼¼Å¹±â',1);
+VALUES ('0000000003','melon', 'ì„¸íƒê¸°',1);
 INSERT INTO tb_order (ord_no, ord_userid, ord_product, ord_count)
-VALUES ('0000000004','apple', '¸ð´ÏÅÍ',1);
+VALUES ('0000000004','apple', 'ëª¨ë‹ˆí„°',1);
 
--- Á¶ÀÎ(join)
--- °¢ Å×ÀÌºí°£¿¡ °øÅëµÈ ÄÃ·³(Á¶°Ç)À¸·Î µ¥ÀÌÅÍ¸¦ ÇÕÃÄ Ç¥Çö
+-- ì¡°ì¸(join)
+-- ê° í…Œì´ë¸”ê°„ì— ê³µí†µëœ ì»¬ëŸ¼(ì¡°ê±´)ìœ¼ë¡œ ë°ì´í„°ë¥¼ í•©ì³ í‘œí˜„
 -- SELECT M.mem_userid, M.mem_name, O.ord_product, O.ord_regdate FROM tb_member AS M, tb_order AS O WHERE M.mem_userid = O.ord_userid;
 
--- inner join(±³ÁýÇÕ)
+-- inner join(êµì§‘í•©)
 SELECT mem_userid, mem_name, ord_product, ord_regdate FROM tb_member JOIN tb_order 
 ON tb_member.mem_userid = tb_order.ord_userid;
 
--- left join(¿øº»Å×ÀÌºí ±âÁØ)
+-- left join(ì›ë³¸í…Œì´ë¸” ê¸°ì¤€)
 SELECT mem_userid, mem_name, ord_product, ord_regdate FROM tb_member LEFT JOIN tb_order 
 ON tb_member.mem_userid = tb_order.ord_userid;
 
--- right join(ÂüÁ¶Å×ÀÌºí ±âÁØ)
+-- right join(ì°¸ì¡°í…Œì´ë¸” ê¸°ì¤€)
 SELECT mem_userid, mem_name, ord_product, ord_regdate FROM tb_member RIGHT JOIN tb_order 
 ON tb_member.mem_userid = tb_order.ord_userid;
 
 
--- group by(±×·ì)
--- select ÄÃ·³¸í1, ÄÃ·³¸í2 .. from Å×ÀÌºí¸í where Á¶°ÇÀý group by ±×·ìÀ» ¸ÎÀ» ÄÃ·³¸í having Á¶°ÇÀý order by Á¤·ÄÇÒ ÄÃ·³
--- ±×·ìÀ» ¸ÎÀ» °æ¿ì select µÚ¿¡ ³ª¿À´Â Å°¿öµåÀº ±×·ìÀ» ¸ÎÀº ÄÃ·³ ¶Ç´Â Áý°èÇÔ¼ö¸¸ °¡´É
--- Áý°èÇÔ¼ö ( count() : °³¼ö, sum() : ÃÑÇÕ, avg() : Æò±Õ, max() : ÃÖ´ë°ª, min() : ÃÖ¼Ò°ª )
+-- group by(ê·¸ë£¹)
+-- select ì»¬ëŸ¼ëª…1, ì»¬ëŸ¼ëª…2 .. from í…Œì´ë¸”ëª… where ì¡°ê±´ì ˆ group by ê·¸ë£¹ì„ ë§ºì„ ì»¬ëŸ¼ëª… having ì¡°ê±´ì ˆ order by ì •ë ¬í•  ì»¬ëŸ¼
+-- ê·¸ë£¹ì„ ë§ºì„ ê²½ìš° select ë’¤ì— ë‚˜ì˜¤ëŠ” í‚¤ì›Œë“œì€ ê·¸ë£¹ì„ ë§ºì€ ì»¬ëŸ¼ ë˜ëŠ” ì§‘ê³„í•¨ìˆ˜ë§Œ ê°€ëŠ¥
+-- ì§‘ê³„í•¨ìˆ˜ ( count() : ê°œìˆ˜, sum() : ì´í•©, avg() : í‰ê· , max() : ìµœëŒ€ê°’, min() : ìµœì†Œê°’ )
 SELECT * FROM tb_member;
 SELECT mem_gender FROM tb_member GROUP BY mem_gender;
 SELECT mem_gender, mem_userid FROM tb_member GROUP BY mem_gender; -- not a GROUP BY expression
@@ -121,7 +121,7 @@ SELECT mem_gender, count(mem_userid) FROM tb_member GROUP BY mem_gender HAVING c
 SELECT mem_gender, count(mem_userid) FROM tb_member WHERE mem_userid
 NOT IN ('banana', 'melon', 'avocado') GROUP BY mem_gender HAVING count(mem_userid) > 2;
 
--- hr °èÁ¤ È°¼ºÈ­
+-- hr ê³„ì • í™œì„±í™”
 ALTER USER hr account unlock;
 ALTER USER hr IDENTIFIED BY hr;
 
