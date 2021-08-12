@@ -1,79 +1,79 @@
--- »ç¿ø Å×ÀÌºí
+-- ì‚¬ì› í…Œì´ë¸”
 SELECT * FROM employees;
 
--- »ç¹ø, ÀÌ¸§, ÀÔ»ç³â¿ùÀÏ Ãâ·Â
+-- ì‚¬ë²ˆ, ì´ë¦„, ì…ì‚¬ë…„ì›”ì¼ ì¶œë ¥
 SELECT employee_id, first_name, last_name, hire_date FROM employees;
 
--- ÀÔ»çÇÑ ¿ù
--- extract() : ³¯Â¥ µ¥ÀÌÅÍ·Î ºÎÅÍ ¿øÇÏ´Â °ªÀ» ¹İÈ¯
--- extract(ÀÏ or ¿ù or ³â from ÇÊµå¸í)
+-- ì…ì‚¬í•œ ì›”
+-- extract() : ë‚ ì§œ ë°ì´í„°ë¡œ ë¶€í„° ì›í•˜ëŠ” ê°’ì„ ë°˜í™˜
+-- extract(ì¼ or ì›” or ë…„ from í•„ë“œëª…)
 SELECT employee_id, first_name, last_name, hire_date, EXTRACT(MONTH FROM hire_date) AS HIRE_MONTH FROM employees;
 
--- ÀÔ»ç ºĞ±â
--- ceil() : ¿Ã¸² Ã³¸®ÇÑ Á¤¼ö°ªÀ» ¹İÈ¯
+-- ì…ì‚¬ ë¶„ê¸°
+-- ceil() : ì˜¬ë¦¼ ì²˜ë¦¬í•œ ì •ìˆ˜ê°’ì„ ë°˜í™˜
 SELECT employee_id, first_name, last_name, hire_date, EXTRACT(MONTH FROM hire_date) AS HIRE_MONTH, ceil(EXTRACT(MONTH FROM hire_date)/3) AS Quarter FROM employees;
 
--- ºĞ±âº°·Î ÀÔ»çÇÑ »ç¿ø¼ö
+-- ë¶„ê¸°ë³„ë¡œ ì…ì‚¬í•œ ì‚¬ì›ìˆ˜
 SELECT CEIL(EXTRACT(MONTH FROM hire_date)/3) AS Quarter, count(employee_id) AS Count_Member FROM employees GROUP BY ceil(EXTRACT(MONTH FROM hire_date)/3);
 
 
--- 2005³â 3¿ù¿¡ ÀÔ»çÇÑ »ç¿øÀ» ´ë»óÀ¸·Î ÀÏÁÖÀÏ °£°İÀ¸·Î ÀÔ»çÀÚÀÇ ¼ö
--- 2005³â 3¿ù ÀÔ»çÀÚ
--- trunc() : ¿øÇÏ´Â ¼Ò¼öÁ¡ ÀÚ¸´¼ö¸¸Å­ ¹İÈ¯
--- trunc(°ª, ¿É¼Ç)
--- trunc(¼Ò¼öÁ¡Æ÷ÇÔ, 1) --> Ã¹Â° Àı»ç
--- trunc(³¯Â¥, 'YEAR')
+-- 2005ë…„ 3ì›”ì— ì…ì‚¬í•œ ì‚¬ì›ì„ ëŒ€ìƒìœ¼ë¡œ ì¼ì£¼ì¼ ê°„ê²©ìœ¼ë¡œ ì…ì‚¬ìì˜ ìˆ˜
+-- 2005ë…„ 3ì›” ì…ì‚¬ì
+-- trunc() : ì›í•˜ëŠ” ì†Œìˆ˜ì  ìë¦¿ìˆ˜ë§Œí¼ ë°˜í™˜
+-- trunc(ê°’, ì˜µì…˜)
+-- trunc(ì†Œìˆ˜ì í¬í•¨, 1) --> ì²«ì§¸ ì ˆì‚¬
+-- trunc(ë‚ ì§œ, 'YEAR')
 
 SELECT employee_id, EXTRACT(DAY FROM hire_date) AS hire_day FROM employees WHERE extract(YEAR FROM hire_date) = 2005 AND EXTRACT(MONTH FROM hire_date) = 3;
--- ÁÖÂ÷
+-- ì£¼ì°¨
 SELECT employee_id, EXTRACT(DAY FROM hire_date) AS hire_day, trunc(EXTRACT(DAY FROM hire_date)/7)+1 AS num_week FROM employees WHERE extract(YEAR FROM hire_date) = 2005 AND EXTRACT(MONTH FROM hire_date) = 3;
--- °¢ ÁÖ¿¡ ÀÔ»çÇÑ »ç¿ø¼ö
+-- ê° ì£¼ì— ì…ì‚¬í•œ ì‚¬ì›ìˆ˜
 SELECT trunc(EXTRACT(DAY FROM hire_date)/7)+1 AS num_week, count(employee_id) AS Count_Member FROM employees WHERE extract(YEAR FROM hire_date) = 2005 AND EXTRACT(MONTH FROM hire_date) = 3 GROUP BY trunc(EXTRACT(DAY FROM hire_date)/7)+1 ORDER BY num_week;
 
--- Â¦¼ö ÇØ¿Í È¦¼ö ÇØ¿¡ ÀÔ»çÇÑ »ç¿øÀÇ Á¤º¸
--- ¿¬µµº° ÀÔ»çÀÚ
+-- ì§ìˆ˜ í•´ì™€ í™€ìˆ˜ í•´ì— ì…ì‚¬í•œ ì‚¬ì›ì˜ ì •ë³´
+-- ì—°ë„ë³„ ì…ì‚¬ì
 SELECT EXTRACT(YEAR FROM hire_date), count(employee_id) FROM employees GROUP BY EXTRACT(YEAR FROM hire_date);
--- mod() : °ªÀ» ³ª´« ´ÙÀ½ ±× ³ª¸ÓÁö¸¦ ±¸ÇÔ
--- Â¦¼ö¿Í È¦¼ö ¿¬µµ¸¦ ±¸ºĞÇÏ±â À§ÇØ mod() »ç¿ë
+-- mod() : ê°’ì„ ë‚˜ëˆˆ ë‹¤ìŒ ê·¸ ë‚˜ë¨¸ì§€ë¥¼ êµ¬í•¨
+-- ì§ìˆ˜ì™€ í™€ìˆ˜ ì—°ë„ë¥¼ êµ¬ë¶„í•˜ê¸° ìœ„í•´ mod() ì‚¬ìš©
 SELECT mod(EXTRACT(YEAR FROM hire_date), 2) AS oddeven, count(employee_id) AS Count_Member FROM employees GROUP BY mod(EXTRACT(YEAR FROM hire_date), 2);
--- Ãâ·Â °á°ú¸¦ ¼öÁ¤
+-- ì¶œë ¥ ê²°ê³¼ë¥¼ ìˆ˜ì •
 /*
- * 	case °ª when ºñ±³°ª then Ãâ·Â1 else Ãâ·Â2 end
+ * 	case ê°’ when ë¹„êµê°’ then ì¶œë ¥1 else ì¶œë ¥2 end
  */
 SELECT CASE mod(EXTRACT(YEAR FROM hire_date), 2)
 	WHEN 0 THEN 'even' ELSE 'odd' END AS YEAR
 	, count(employee_id) AS Count_Member FROM EMPLOYEES GROUP BY mod(EXTRACT(YEAR FROM hire_date), 2);
 
--- 2005³â¿¡ ÀÔ»çÇÑ »ç¿øÀÇ Á¤º¸¸¦ »ó¹İ±â, ÇÏ¹İ±â·Î ±¸ºĞÇØ¼­ Ãâ·Â
+-- 2005ë…„ì— ì…ì‚¬í•œ ì‚¬ì›ì˜ ì •ë³´ë¥¼ ìƒë°˜ê¸°, í•˜ë°˜ê¸°ë¡œ êµ¬ë¶„í•´ì„œ ì¶œë ¥
 SELECT employee_id, hire_date FROM employees WHERE extract(YEAR FROM hire_date) = 2006;
--- 2005³â¿¡ ÀÔ»çÇÑ »ç¿øÀÇ ¿ù
+-- 2005ë…„ì— ì…ì‚¬í•œ ì‚¬ì›ì˜ ì›”
 SELECT employee_id, hire_date, EXTRACT(MONTH FROM hire_date) AS MONTH FROM employees WHERE extract(YEAR FROM hire_date) = 2006;
 /*
- * width_bucket() : ÃÖ¼Ò°ª°ú ÃÖ´ë°ªÀ» ¼³Á¤ÇÏ°í ¹öÅ¶À» ¼³Á¤ÇÑ ´ÙÀ½ ÁöÁ¤ÇÑ °ªÀÌ ¹üÀ§¿¡¼­ ¾î´À À§Ä¡¿¡ ÀÖ´ÂÁö ¹İÈ¯
- * width_bucket(°ª, ÃÖ¼Ò°ª, ÃÖ´ë°ª+1, 2) -> width_bucket(°ª, 1, 13, 2)
+ * width_bucket() : ìµœì†Œê°’ê³¼ ìµœëŒ€ê°’ì„ ì„¤ì •í•˜ê³  ë²„í‚·ì„ ì„¤ì •í•œ ë‹¤ìŒ ì§€ì •í•œ ê°’ì´ ë²”ìœ„ì—ì„œ ì–´ëŠ ìœ„ì¹˜ì— ìˆëŠ”ì§€ ë°˜í™˜
+ * width_bucket(ê°’, ìµœì†Œê°’, ìµœëŒ€ê°’+1, 2) -> width_bucket(ê°’, 1, 13, 2)
  */
--- 2005³â »ó¹İ±â, ÇÏ¹İ±â ÀÔ»çÇÑ »ç¿ø ¼ö
+-- 2005ë…„ ìƒë°˜ê¸°, í•˜ë°˜ê¸° ì…ì‚¬í•œ ì‚¬ì› ìˆ˜
 SELECT WIDTH_BUCKET(EXTRACT(MONTH FROM hire_date), 1, 13, 2) AS Half_Year, count(employee_id) AS Count_Member FROM employees WHERE extract(YEAR FROM hire_date) = 2005 GROUP BY WIDTH_BUCKET(EXTRACT(MONTH FROM hire_date), 1, 13, 2);
 SELECT CASE WIDTH_BUCKET(EXTRACT(MONTH FROM hire_date), 1, 13, 2)
-WHEN 1 THEN '»ó¹İ±â' ELSE 'ÇÏ¹İ±â' END AS half_Year,
+WHEN 1 THEN 'ìƒë°˜ê¸°' ELSE 'í•˜ë°˜ê¸°' END AS half_Year,
 count(employee_id) FROM EMPLOYEES WHERE extract(YEAR FROM hire_date) = 2005 GROUP BY WIDTH_BUCKET(EXTRACT(MONTH FROM hire_date),1,13,2);
 
--- round() : ¼ıÀÚ¸¦ ÁöÁ¤ÇÑ ÀÚ¸® ¼ö·Î ¹İ¿Ã¸²ÇÏ¿© ¹İÈ¯
+-- round() : ìˆ«ìë¥¼ ì§€ì •í•œ ìë¦¬ ìˆ˜ë¡œ ë°˜ì˜¬ë¦¼í•˜ì—¬ ë°˜í™˜
 SELECT round(19.854, 1) FROM dual;
 SELECT round(265, -1) FROM dual;
 
--- substr() : ¹®ÀÚ¿­¿¡¼­ ÀÏºÎ ¹®ÀÚ¸¸À» ¹İÈ¯
-SELECT substr('´ëÇÑ¹Î±¹', 1, 2) FROM dual; -- 1ºÎÅÍ 2±ÛÀÚ
-SELECT substr('oracle database', 7) FROM dual; -- 7ºÎÅÍ ³¡±îÁö
-SELECT substr('oracle database', -7) FROM dual; -- ³¡¿¡¼­ 7ÀÚ¸®
+-- substr() : ë¬¸ìì—´ì—ì„œ ì¼ë¶€ ë¬¸ìë§Œì„ ë°˜í™˜
+SELECT substr('ëŒ€í•œë¯¼êµ­', 1, 2) FROM dual; -- 1ë¶€í„° 2ê¸€ì
+SELECT substr('oracle database', 7) FROM dual; -- 7ë¶€í„° ëê¹Œì§€
+SELECT substr('oracle database', -7) FROM dual; -- ëì—ì„œ 7ìë¦¬
 
--- concat() : ÀÔ·ÂµÇ´Â µÎ ¹®ÀÚ¿­À» ¿¬°áÇÑ ´ÙÀ½ ±× °ªÀ» ¹İÈ¯
+-- concat() : ì…ë ¥ë˜ëŠ” ë‘ ë¬¸ìì—´ì„ ì—°ê²°í•œ ë‹¤ìŒ ê·¸ ê°’ì„ ë°˜í™˜
 SELECT * FROM employees;
 SELECT last_name || ' ' || first_name AS name FROM employees;
 SELECT concat(last_name, first_name) AS name FROM employees;
 SELECT concat(last_name, concat(' ', first_name)) AS name FROM employees;
 
--- trim(), ltrim(), rtrim() : ¹®ÀÚ¿­¿¡¼­ °ø¹éÀÌ³ª Æ¯Á¤ ¹®ÀÚ¸¦ Á¦°ÅÇÑ °ªÀ» ¹İÈ¯
+-- trim(), ltrim(), rtrim() : ë¬¸ìì—´ì—ì„œ ê³µë°±ì´ë‚˜ íŠ¹ì • ë¬¸ìë¥¼ ì œê±°í•œ ê°’ì„ ë°˜í™˜
 CREATE TABLE sample(
 	test varchar2(20)
 );
@@ -88,33 +88,33 @@ SELECT * FROM sample;
 SELECT * FROM sample WHERE test='oracle';
 SELECT * FROM sample WHERE trim(test)='oracle';
 
--- ³¯Â¥ ÇÔ¼ö
+-- ë‚ ì§œ í•¨ìˆ˜
 SELECT * FROM employees;
 SELECT sysdate + 365 FROM dual;
--- add_months() : Æ¯Á¤ ³¯Â¥ÀÇ ¿ù¿¡ Á¤¼ö¸¦ ´õÇÑ ´ÙÀ½ ÇØ´ç ³¯Â¥¸¦ ¹İÈ¯
+-- add_months() : íŠ¹ì • ë‚ ì§œì˜ ì›”ì— ì •ìˆ˜ë¥¼ ë”í•œ ë‹¤ìŒ í•´ë‹¹ ë‚ ì§œë¥¼ ë°˜í™˜
 SELECT ADD_MONTHS(sysdate, 12) FROM dual;
--- months_between() : ³¯Â¥ °£ÀÇ Â÷ÀÌ¸¦ ¿ù·Î ¹İÈ¯
--- ÇöÀç ±Ù¹«ÇÏ´Â »ç¿øÀÇ ÀçÁ÷ ±â°£À» °è»ê
+-- months_between() : ë‚ ì§œ ê°„ì˜ ì°¨ì´ë¥¼ ì›”ë¡œ ë°˜í™˜
+-- í˜„ì¬ ê·¼ë¬´í•˜ëŠ” ì‚¬ì›ì˜ ì¬ì§ ê¸°ê°„ì„ ê³„ì‚°
 SELECT employee_id, hire_date FROM employees;
 SELECT employee_id, sysdate-hire_date FROM employees;
 SELECT employee_id, floor((sysdate-hire_date) /365) AS YEAR FROM employees;
 SELECT employee_id, floor((sysdate-hire_date) /365) AS YEAR, MOD(MONTHS_BETWEEN(sysdate, hire_date), 12) AS MONTH FROM employees;
 
 -- extract()
--- to_char() : ³¯Â¥¸¦ ¹®ÀÚÇü µ¥ÀÌÅÍ·Î º¯È¯
+-- to_char() : ë‚ ì§œë¥¼ ë¬¸ìí˜• ë°ì´í„°ë¡œ ë³€í™˜
 SELECT to_char(sysdate, 'HH24:MI:SS') AS time FROM dual;
 /*
- *  D : ÁÖ(1~7) 1Àº ÀÏ¿äÀÏ, 7Àº Åä¿äÀÏ
- *  DD : ÀÏ(1~31)
- *  DDD : 1³â Áß ³¯Â¥(1-366)
- *  HH24 : ½Ã°£(0~23)
- *  IW : 1³âÁß ¸î ÁÖ(1~53)
- *  MI : ºĞ(0~59)
- *  SS : ÃÊ(0~59)
- *  MM : ¿ù(01~12)
- *  Q : ºĞ±â(1,2,3,4)
- *  YYYY : ³â
- *  W : ¿ù Áß ¸î ÁÖ(1~5)
+ *  D : ì£¼(1~7) 1ì€ ì¼ìš”ì¼, 7ì€ í† ìš”ì¼
+ *  DD : ì¼(1~31)
+ *  DDD : 1ë…„ ì¤‘ ë‚ ì§œ(1-366)
+ *  HH24 : ì‹œê°„(0~23)
+ *  IW : 1ë…„ì¤‘ ëª‡ ì£¼(1~53)
+ *  MI : ë¶„(0~59)
+ *  SS : ì´ˆ(0~59)
+ *  MM : ì›”(01~12)
+ *  Q : ë¶„ê¸°(1,2,3,4)
+ *  YYYY : ë…„
+ *  W : ì›” ì¤‘ ëª‡ ì£¼(1~5)
 */
--- 2005³â ÀÔ»çÇÑ »ç¿øµéÀÇ ¸ñ·Ï ºĞ±âº° ÀÔ»çÀÚ ¼ö
+-- 2005ë…„ ì…ì‚¬í•œ ì‚¬ì›ë“¤ì˜ ëª©ë¡ ë¶„ê¸°ë³„ ì…ì‚¬ì ìˆ˜
 SELECT TO_CHAR(hire_date, 'Q') AS Quarter, count(employee_id) AS employee_number FROM employees WHERE extract(YEAR FROM hire_date) = 2005 GROUP BY to_char(hire_date, 'Q') ORDER BY Quarter;
