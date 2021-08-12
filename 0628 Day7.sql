@@ -1,20 +1,20 @@
--- instr(¹®ÀÚ¿­, °Ë»öÇÒ ¹®ÀÚ, ½ÃÀÛÁöÁ¡, n¹øÂ° °Ë»ö´Ü¾î)
--- Ã£´Â ¹®ÀÚÀÇ À§Ä¡¸¦ ¹İÈ¯
--- Ã£´Â ¹®ÀÚ°¡ ¾øÀ¸¸é 0À» ¹İÈ¯
--- Ã£´Â ´Ü¾î ¾Õ±ÛÀÚÀÇ ÀÎµ¦½º¸¦ ¹İÈ¯
+-- instr(ë¬¸ìì—´, ê²€ìƒ‰í•  ë¬¸ì, ì‹œì‘ì§€ì , në²ˆì§¸ ê²€ìƒ‰ë‹¨ì–´)
+-- ì°¾ëŠ” ë¬¸ìì˜ ìœ„ì¹˜ë¥¼ ë°˜í™˜
+-- ì°¾ëŠ” ë¬¸ìê°€ ì—†ìœ¼ë©´ 0ì„ ë°˜í™˜
+-- ì°¾ëŠ” ë‹¨ì–´ ì•ê¸€ìì˜ ì¸ë±ìŠ¤ë¥¼ ë°˜í™˜
 SELECT instr('Hello Oracle','Ok') AS idx FROM dual;
 SELECT instr('Hello Oracle','Or') AS idx FROM dual;
--- 5¹øÂ° ÀÎµ¦½ººÎÅÍ 'l' ¹®ÀÚ Ã£±â
+-- 5ë²ˆì§¸ ì¸ë±ìŠ¤ë¶€í„° 'l' ë¬¸ì ì°¾ê¸°
 SELECT instr('Hello Oracle','l', 5) AS idx FROM dual;
--- 2¹øÂ° ÀÎµ¦½ººÎÅÍ 'l' ¹®ÀÚ Áß 2¹øÂ° ¹®ÀÚ Ã£±â
+-- 2ë²ˆì§¸ ì¸ë±ìŠ¤ë¶€í„° 'l' ë¬¸ì ì¤‘ 2ë²ˆì§¸ ë¬¸ì ì°¾ê¸°
 SELECT instr('Hello Oracle','l', 2, 2) AS idx FROM dual;
--- µÚ¿¡¼­ 3¹øÂ° ÀÎµ¦½ººÎÅÍ ¿ŞÂÊÀ¸·Î 'l' ¹®ÀÚ Áß 2¹øÂ° ¹®ÀÚ Ã£±â
+-- ë’¤ì—ì„œ 3ë²ˆì§¸ ì¸ë±ìŠ¤ë¶€í„° ì™¼ìª½ìœ¼ë¡œ 'l' ë¬¸ì ì¤‘ 2ë²ˆì§¸ ë¬¸ì ì°¾ê¸°
 SELECT instr('Hello Oracle','l', -3, 2) AS idx FROM dual;
 
 
--- Á¤±ÔÇ¥Çö½Ä
--- REGEXP_INSTR() ÇÔ¼ö
--- ¹®ÀÚÇÔ¼ö instr()ÀÇ ±â´ÉÀ» È®ÀåÇÑ °ÍÀ¸·Î Á¤±Ô Ç¥Çö½ÄÀ» ÀÌ¿ëÇØ ÀÔ·ÂµÈ ¹®ÀåÀ» °Ë»ö
+-- ì •ê·œí‘œí˜„ì‹
+-- REGEXP_INSTR() í•¨ìˆ˜
+-- ë¬¸ìí•¨ìˆ˜ instr()ì˜ ê¸°ëŠ¥ì„ í™•ì¥í•œ ê²ƒìœ¼ë¡œ ì •ê·œ í‘œí˜„ì‹ì„ ì´ìš©í•´ ì…ë ¥ëœ ë¬¸ì¥ì„ ê²€ìƒ‰
 SELECT * FROM EMPLOYEES;
 SELECT phone_number, REGEXP_INSTR(phone_number, '([[:digit:]]{4})') FROM EMPLOYEES;
 
@@ -31,18 +31,18 @@ INSERT INTO example values('aee123-abc-05');
 
 SELECT * FROM example;
 
--- ¹®ÀÚ¿­¿¡ 'b'°¡ 2¹ø µé¾îÀÖ´Â °ªÀ» ¹İÈ¯(REGEXP_INSTR¸¦ »ç¿ë)
+-- ë¬¸ìì—´ì— 'b'ê°€ 2ë²ˆ ë“¤ì–´ìˆëŠ” ê°’ì„ ë°˜í™˜(REGEXP_INSTRë¥¼ ì‚¬ìš©)
 SELECT ex_a, REGEXP_INSTR(ex_a, 'bb', 1) FROM example; 
 
 SELECT * FROM example where regexp_instr(ex_a, 'bb',1) > 0;
--- REGEXP_INSTR(´ë»ó¹®ÀÚ¿­, ÆĞÅÏ, ½ÃÀÛÀ§Ä¡, ¸î¹øÂ° ÀÏÄ¡, ÀÏÄ¡ÇÏ´Â ¹®ÀÚ¿­ ½ÃÀÛÀ§Ä¡)
+-- REGEXP_INSTR(ëŒ€ìƒë¬¸ìì—´, íŒ¨í„´, ì‹œì‘ìœ„ì¹˜, ëª‡ë²ˆì§¸ ì¼ì¹˜, ì¼ì¹˜í•˜ëŠ” ë¬¸ìì—´ ì‹œì‘ìœ„ì¹˜)
 SELECT * FROM example where regexp_instr(ex_a, 'b',1,3,0) > 0;
 
--- regexp_substr() ÇÔ¼ö
--- Á¤±Ô Ç¥Çö½Ä ÆĞÅÏÀ» Àû¿ëÇÏ¿© ¹®ÀÚ¿­ ÀÏºÎ¸¦ ¹İÈ¯
+-- regexp_substr() í•¨ìˆ˜
+-- ì •ê·œ í‘œí˜„ì‹ íŒ¨í„´ì„ ì ìš©í•˜ì—¬ ë¬¸ìì—´ ì¼ë¶€ë¥¼ ë°˜í™˜
 DROP TABLE example;
 
--- concat() : ¹®ÀÚ¿­À» ¿¬°áÇÏ´Â ÇÔ¼ö
+-- concat() : ë¬¸ìì—´ì„ ì—°ê²°í•˜ëŠ” í•¨ìˆ˜
 CREATE TABLE example AS SELECT employee_id, first_name, 
 CONCAT(email, '@koreait.com') AS email FROM employees;
 	
@@ -63,20 +63,20 @@ CREATE TABLE t2(
 INSERT INTO t1 values(1, 'A');
 INSERT INTO t1 values(2, 'C');
 INSERT INTO t1 values(3, 'B');
-INSERT INTO t1 values(4, '°¡');
+INSERT INTO t1 values(4, 'ê°€');
 INSERT INTO t1 values(5, NULL);
 
 INSERT INTO t2 values('A', 20);
 INSERT INTO t2 values('B', 50);
-INSERT INTO t2 values('°¡', 40);
+INSERT INTO t2 values('ê°€', 40);
 INSERT INTO t2 values('A', 10);
 INSERT INTO t2 values('B', 20);
 INSERT INTO t2 values('A', 10);
 
-SELECT * FROM t1; -- A C B °¡ null
-SELECT * FROM t2; -- A B °¡ A B A
+SELECT * FROM t1; -- A C B ê°€ null
+SELECT * FROM t2; -- A B ê°€ A B A
 
--- t1 5¹ø i/o ¹ß»ı, t2 6¹ø i/o ¹ß»ı
+-- t1 5ë²ˆ i/o ë°œìƒ, t2 6ë²ˆ i/o ë°œìƒ
 SELECT COUNT(*) FROM t1, t2; 
 
 SELECT t1.c1, t2.c2 FROM t1, t2 WHERE t1.c2 = t2.c1;
@@ -84,11 +84,11 @@ SELECT t1.c1, t2.c2 FROM t1 JOIN t2 ON t1.c2 = t2.c1;
 
 SELECT t1.c1, sum(t2.c2) FROM t1, t2 WHERE t1.c2 = t2.c1 GROUP BY t1.c1;
 
--- left join = ¿ÜºÎÁ¶ÀÎ(left outer join)
+-- left join = ì™¸ë¶€ì¡°ì¸(left outer join)
 SELECT t1.c1, sum(t2.c2) FROM t1 LEFT JOIN t2 ON t1.c2 = t2.c1 GROUP BY t1.c1
 ORDER BY t1.c1 asc;
 
--- ¿ÜºÎ Á¶ÀÎ ¿¬»êÀÚ (+)
+-- ì™¸ë¶€ ì¡°ì¸ ì—°ì‚°ì (+)
 SELECT t1.c1, sum(t2.c2) FROM t1, t2 WHERE t1.c2 = t2.c1(+) GROUP BY t1.c1;
 
 SELECT * FROM employees;
@@ -106,15 +106,15 @@ SELECT department_name FROM EMPLOYEES e, DEPARTMENTS d
 WHERE last_name = 'King' AND first_name = 'Steven'
 AND e.DEPARTMENT_ID = d.DEPARTMENT_ID;
 
--- Ç¥ÁØÄÚµå(ANSI)·Î º¯°æÇÏ±â
+-- í‘œì¤€ì½”ë“œ(ANSI)ë¡œ ë³€ê²½í•˜ê¸°
 SELECT department_name FROM EMPLOYEES e JOIN DEPARTMENTS d
 ON e.DEPARTMENT_ID = d.DEPARTMENT_ID 
 WHERE last_name = 'King' AND first_name = 'Steven';
 
 -- UNION
--- SELECT °á°ú¸¦ ÇÕÄ¥ ¼ö ÀÖÀ½
--- ÇÕÄ£ °á°ú¿¡¼­ Áßº¹µÇ´Â ÇàÀº ÇÏ³ª¸¸ Ç¥½Ã
--- ÄÃ·³ÀÇ °³¼ö°¡ °°¾Æ¾ß ÇÏ°í, °¢ ÄÃ·³ÀÇ µ¥ÀÌÅÍÅ¸ÀÔÀÌ °°¾Æ¾ß ÇÔ
+-- SELECT ê²°ê³¼ë¥¼ í•©ì¹  ìˆ˜ ìˆìŒ
+-- í•©ì¹œ ê²°ê³¼ì—ì„œ ì¤‘ë³µë˜ëŠ” í–‰ì€ í•˜ë‚˜ë§Œ í‘œì‹œ
+-- ì»¬ëŸ¼ì˜ ê°œìˆ˜ê°€ ê°™ì•„ì•¼ í•˜ê³ , ê° ì»¬ëŸ¼ì˜ ë°ì´í„°íƒ€ì…ì´ ê°™ì•„ì•¼ í•¨
 /*
  * select * from tb_a
  * union (ALL)
@@ -123,16 +123,16 @@ WHERE last_name = 'King' AND first_name = 'Steven';
 SELECT * FROM COUNTRIES;
 SELECT * FROM regions;
 
--- µÎ Å×ÀÌºíÀ» union ÇÏ±â À§ÇØ ÄÃ·³ÀÇ °³¼ö¿Í Å¸ÀÔÀÌ °°¾Æ¾ß ÇÔ
--- countries¿¡¼­ country_name°ú region_id¸¦ SELECT
--- regionsÅ×ÀÌºíÀº region_name°ú region_id¸¦ SELECT
+-- ë‘ í…Œì´ë¸”ì„ union í•˜ê¸° ìœ„í•´ ì»¬ëŸ¼ì˜ ê°œìˆ˜ì™€ íƒ€ì…ì´ ê°™ì•„ì•¼ í•¨
+-- countriesì—ì„œ country_nameê³¼ region_idë¥¼ SELECT
+-- regionsí…Œì´ë¸”ì€ region_nameê³¼ region_idë¥¼ SELECT
 
--- Áßº¹À» Á¦°ÅÇÔ
+-- ì¤‘ë³µì„ ì œê±°í•¨
 SELECT country_name, region_id FROM countries
 UNION
 SELECT region_name, region_id FROM regions;
 
--- Áßº¹À» Á¦°ÅÇÏÁö ¾ÊÀ½
+-- ì¤‘ë³µì„ ì œê±°í•˜ì§€ ì•ŠìŒ
 SELECT country_name, region_id FROM countries
 UNION ALL
 SELECT region_name, region_id FROM regions;
